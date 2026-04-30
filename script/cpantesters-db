@@ -1,0 +1,32 @@
+#!perl
+# PODNAME: cpantesters-db
+our $VERSION = '0.001';
+
+=head1 NAME
+
+cpantesters-db - OLAP database for CPAN Testers report data
+
+=head1 SYNOPSIS
+
+  cpantesters-db daemon
+  cpantesters-db help
+
+=head1 DESCRIPTION
+
+This program loads the CPAN Testers DB application, a L<Mojolicious> web
+application. For more detailed help, see C<cpantesters-db help>.
+
+=head1 SEE ALSO
+
+L<CPAN::Testers::DB>, L<Mojolicious>
+
+=cut
+
+use strict;
+use warnings;
+use File::Spec::Functions qw( catdir updir );
+use FindBin ();
+use lib "$FindBin::Bin/../lib";
+
+require Mojolicious::Commands;
+Mojolicious::Commands->start_app( 'CPAN::Testers::DB' );
