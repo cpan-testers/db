@@ -247,6 +247,8 @@ async sub insert_pkg_vers($db, $lang_id, $pkg) {
   # distribution this package belongs to. From there, we can defer to
   # insert_dist_vers which will then fill in all the packages provided by the
   # distribution.
+  # FIXME: If the `dist` for this package is exactly `perl`, we can't look up
+  # the package's version. We have to instead look up in Module::CoreList
   state $mc = MetaCPAN::Client->new;
   state %not_found = ();
   my $pkg_id = await get_id( $db, pkg => {
